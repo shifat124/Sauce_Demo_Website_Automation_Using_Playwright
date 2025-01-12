@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "username": "standard_user",
+            "password": "secret_sauce"
+        },
+        {
+            "username": "locked_out_user",
+            "password": "secret_sauce"
+        },
+        {
+            "username": "problem_user",
+            "password": "secret_sauce"
+        },
+        {
+            "username": "performance_glitch_user",
+            "password": "secret_sauce"
+        },
+        {
+            "username": "shifat_laskor",
+            "password": "sec_sau"
+        },
+        {
+            "username": "roy_troy",
+            "password": "rex_trex"
+        },
+        {
+            "username": "jon_cena",
+            "password": "nick_bela"
+        }
+    ]
+}

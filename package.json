@@ -1,5 +1,6 @@
 {
   "name": "sauce_demo_website_automation_using_playwright",
+  "type": "module",
   "version": "1.0.0",
   "description": "An Test Automation Project of an E-Commerce based demo website using Playwright, JavaScript, Page Object Model (POM) Pattern, HTML Reports, Data Driven Testing using JSON file and many more.",
   "main": "index.js",
