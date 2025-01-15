@@ -1,3 +1,4 @@
+import TestConfig from '../../../testConfig';
 class LoginPage {
     constructor(page) {
         this.page = page;
@@ -6,13 +7,12 @@ class LoginPage {
         this.btnLogin = page.locator('#login-button');
         this.errorLoginMsg = page.locator("h3[data-test='error']");
     }
-async setUserName(username) {
-    await this.txtUserName.fill(username);
+    async verifyLogin(username, password) {
+        const testConfigPageObject = new TestConfig(); 
+        await this.page.goto(testConfigPageObject.url);
+        await this.txtUserName.fill(username);
+        await this.txtUserPassword.fill(password);
+        await this.btnLogin.click();
+    }
 }
-async setUserPassword(password) {
-    await this.txtUserPassword.fill(password);
-}
-async verifyLogin() {
-    
-}
-}
+export default LoginPage;
