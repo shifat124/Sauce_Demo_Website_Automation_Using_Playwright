@@ -13,12 +13,13 @@ test.describe('LogIn Page Test', () => {
     await loginPageObject.verifyLogin(LoginData.invalid_username, LoginData.invalid_password);
     console.log('homePageUrl', page.url());
     await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
-  }); 
-  test.only('Validate LogIn by reading usernames and passwords from the JSON file', async ({ page }) => {
-    const loginPageObject = new LogInPage(page);
-    await loginPageObject.dataDrivenVerifyLogin();
-    console.log('homePageUrl', page.url());
-    await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
+  });
+  LoginData.users.forEach((user) => {
+    test(`Validate Data Driven Test - Login test for user: ${user.username}`, async ({ page }) => {
+      const loginPageObject = new LogInPage(page);
+      await loginPageObject.verifyLogin(user.username, user.password);
+      await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
+    });
   });
 });
 
