@@ -1,0 +1,13 @@
+import { test, expect } from '@playwright/test';
+import HomePage from '../../pageobjects/HomePage/home.page';
+import LoginPage from '../../pageobjects/LoginPage/login.page';
+import LoginData from '../../data/LoginData/login.data.json' assert { type: 'json' };
+test.describe('Home Page Test', () => {
+    test('Validate the count of items', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const totalItemsCount = await homePageObject.verifyCountItems();
+        expect(totalItemsCount).toBe(6);
+    });
+});
