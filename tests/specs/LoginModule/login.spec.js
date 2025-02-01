@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import LogInPage from '../../pageobjects/LoginModule/login.page';
+import LogInPage from '../../pageobjects/LoginPage/login.page';
 import LoginData from '../../data/LoginData/login.data.json' assert { type: 'json' };
 test.describe('LogIn Page Test', () => {
   test('Validate LogIn with valid username and password - Positive Testing', async ({ page }) => {
