@@ -10,4 +10,11 @@ test.describe('Home Page Test', () => {
         const totalItemsCount = await homePageObject.verifyCountItems();
         expect(totalItemsCount).toBe(6);
     });
+    test('Validate that click on each item link from home page navigates to the respective item details page', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifyClickAllItemsLink();
+        expect(actual).toBeTruthy();
+    });
 });
