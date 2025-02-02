@@ -17,4 +17,11 @@ test.describe('Home Page Test', () => {
         const actual = await homePageObject.verifyClickAllItemsLink();
         expect(actual).toBeTruthy();
     });
+    test('Validate the visibility of cart logo', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifyCartLogoVisibility();
+        expect(actual).toBeTruthy();
+    });
 });

@@ -5,6 +5,7 @@ class HomePage {
         this.allHomePageItemsLink = page.locator('.inventory_item_name');
         this.backButton = page.locator('.inventory_details_back_button');
         this.titleOfItemsDetailsPage = page.locator('.inventory_details_name');
+        this.cartLogo = page.locator('path[fill="currentColor"]');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
@@ -25,6 +26,11 @@ class HomePage {
             }
         }
         return true;
+    }
+    async verifyCartLogoVisibility() {
+        const isCartLogoVisible = await this.cartLogo.isVisible();
+        console.log('isCartLogoVisible', isCartLogoVisible);
+        return isCartLogoVisible;
     }
 }
 export default HomePage;
