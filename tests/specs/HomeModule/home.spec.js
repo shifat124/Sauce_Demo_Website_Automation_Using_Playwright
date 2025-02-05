@@ -24,4 +24,12 @@ test.describe('Home Page Test', () => {
         const actual = await homePageObject.verifyCartLogoVisibility();
         expect(actual).toBeTruthy();
     });
+    test('Validate the press of cart logo', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        await homePageObject.cartLogo.click();
+        console.log('cartPageUrl', page.url());
+        await expect(page).toHaveURL('https://www.saucedemo.com/v1/cart.html');
+    });
 });
