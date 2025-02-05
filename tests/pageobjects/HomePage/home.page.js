@@ -6,6 +6,8 @@ class HomePage {
         this.backButton = page.locator('.inventory_details_back_button');
         this.titleOfItemsDetailsPage = page.locator('.inventory_details_name');
         this.cartLogo = page.locator('path[fill="currentColor"]');
+        this.allAddToCartBtn = page.locator('button.btn_primary.btn_inventory');
+        this.totalNumberItemAddCartPage = page.locator('.fa-layers-counter.shopping_cart_badge');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
@@ -14,14 +16,14 @@ class HomePage {
     }
     async verifyClickAllItemsLink() {
         const homePageItemaLink = await this.allHomePageItemsLink.all();
-        for (const item of homePageItemaLink) {
-            const itemText = await item.textContent();
+        for (const homeAllItemLink of homePageItemaLink) {
+            const itemText = await homeAllItemLink.textContent();
             console.log('itemText', itemText);
-            await item.click();
-            const detailsPageTitle = await this.titleOfItemsDetailsPage.textContent();
-            console.log('detailsPageTitle', detailsPageTitle);
+            await homeAllItemLink.click();
+            const allItemdetailsPageTitle = await this.titleOfItemsDetailsPage.textContent();
+            console.log('allItemdetailsPageTitle', allItemdetailsPageTitle);
             await this.backButton.click();
-            if (itemText.trim() !== detailsPageTitle.trim()) {
+            if (itemText.trim() !== allItemdetailsPageTitle.trim()) {
                 return false;
             }
         }
@@ -31,6 +33,15 @@ class HomePage {
         const isCartLogoVisible = await this.cartLogo.isVisible();
         console.log('isCartLogoVisible', isCartLogoVisible);
         return isCartLogoVisible;
+    }
+    async verifyclickallAddToCartBtn() {
+        const homeAllItemsCartBtn = await this.allAddToCartBtn.elementHandles();
+        for (const allCartBtn of homeAllItemsCartBtn) {
+            await allCartBtn.click();
+        }
+        const addedCartIconNumber = await this.totalNumberItemAddCartPage.textContent();
+        console.log('addedCartIconNumber', addedCartIconNumber);
+        return addedCartIconNumber;
     }
 }
 export default HomePage;
