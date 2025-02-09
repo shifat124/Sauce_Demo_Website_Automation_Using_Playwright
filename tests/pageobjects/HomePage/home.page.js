@@ -1,3 +1,4 @@
+import CommonPage from '../../pageobjects/CommonPage/common.page';
 class HomePage {
     constructor(page) {
         this.page = page;
@@ -5,9 +6,7 @@ class HomePage {
         this.allHomePageItemsLink = page.locator('.inventory_item_name');
         this.backButton = page.locator('.inventory_details_back_button');
         this.titleOfItemsDetailsPage = page.locator('.inventory_details_name');
-        this.cartLogo = page.locator('path[fill="currentColor"]');
         this.allAddToCartBtn = page.locator('button.btn_primary.btn_inventory');
-        this.totalNumberItemAddCartPage = page.locator('.fa-layers-counter.shopping_cart_badge');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
@@ -30,7 +29,8 @@ class HomePage {
         return true;
     }
     async verifyCartLogoVisibility() {
-        const isCartLogoVisible = await this.cartLogo.isVisible();
+        const commonPageObject = new CommonPage(this.page);
+        const isCartLogoVisible = await commonPageObject.cartLogo.isVisible();
         console.log('isCartLogoVisible', isCartLogoVisible);
         return isCartLogoVisible;
     }
@@ -39,7 +39,8 @@ class HomePage {
         for (const allCartBtn of homeAllItemsCartBtn) {
             await allCartBtn.click();
         }
-        const addedCartIconNumber = await this.totalNumberItemAddCartPage.textContent();
+        const commonPageObject = new CommonPage(this.page);
+        const addedCartIconNumber = await commonPageObject.totalNumberItemAddCartPage.textContent();
         console.log('addedCartIconNumber', addedCartIconNumber);
         return addedCartIconNumber;
     }

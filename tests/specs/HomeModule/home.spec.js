@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import HomePage from '../../pageobjects/HomePage/home.page';
 import LoginPage from '../../pageobjects/LoginPage/login.page';
+import MenuPage from '../../pageobjects/MenuPanelPage/menu.page';
+import CommonPage from '../../pageobjects/CommonPage/common.page';
 import LoginData from '../../data/LoginData/login.data.json' assert { type: 'json' };
 test.describe('Home Page Test', () => {
     test('Validate the count of items', async ({ page }) => {
@@ -27,8 +29,8 @@ test.describe('Home Page Test', () => {
     test('Validate the press of cart logo', async ({ page }) => {
         const loginPageObject = new LoginPage(page);
         await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
-        const homePageObject = new HomePage(page);
-        await homePageObject.cartLogo.click();
+        const commonPageObject = new CommonPage(page);
+        await commonPageObject.cartLogo.click();
         console.log('cartPageUrl', page.url());
         await expect(page).toHaveURL('https://www.saucedemo.com/v1/cart.html');
     });
@@ -38,5 +40,15 @@ test.describe('Home Page Test', () => {
         const homePageObject = new HomePage(page);
         const actual = await homePageObject.verifyclickallAddToCartBtn();
         expect(actual).toBe('6');
+    });
+    test('Validate the press of All Items of side menu bar', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const commonPageObject = new CommonPage(page);
+        await commonPageObject.sideMenuBar.click();
+        const menuPageObject = new MenuPage(page);
+        await menuPageObject.allItemsOption.click();
+        console.log('pressAllItemsMenuLink', page.url());
+        await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
     });
 });
