@@ -51,4 +51,14 @@ test.describe('Home Page Test', () => {
         console.log('pressAllItemsMenuLink', page.url());
         await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
     });
+    test('Validate the press of About of side menu bar', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const commonPageObject = new CommonPage(page);
+        await commonPageObject.sideMenuBar.click();
+        const menuPageObject = new MenuPage(page);
+        await menuPageObject.aboutOption.click();
+        console.log('pressAboutMenuLink', await page.title());
+        await expect(page).toHaveTitle("Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing");
+    });
 });
