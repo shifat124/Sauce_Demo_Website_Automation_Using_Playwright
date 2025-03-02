@@ -71,4 +71,11 @@ test.describe('Home Page Test', () => {
         console.log('pressLogoutMenuLink', page.url());
         await expect(page).toHaveURL('https://www.saucedemo.com/v1/index.html');
     });
+    test('Validate the visibility of product sort dropdown in home page', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifyProductSortDropdownVisibility();
+        expect(actual).toBeTruthy();
+    });
 });

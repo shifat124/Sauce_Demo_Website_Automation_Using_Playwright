@@ -7,6 +7,7 @@ class HomePage {
         this.backButton = page.locator('.inventory_details_back_button');
         this.titleOfItemsDetailsPage = page.locator('.inventory_details_name');
         this.allAddToCartBtn = page.locator('button.btn_primary.btn_inventory');
+        this.productSortDropdownBox = page.locator('.product_sort_container');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
@@ -43,6 +44,11 @@ class HomePage {
         const addedCartIconNumber = await commonPageObject.totalNumberItemAddCartPage.textContent();
         console.log('addedCartIconNumber', addedCartIconNumber);
         return addedCartIconNumber;
+    }
+    async verifyProductSortDropdownVisibility() {
+        const isProductSortDropdownVisible = await this.productSortDropdownBox.isVisible();
+        console.log('isProductSortDropdownVisible', isProductSortDropdownVisible);
+        return isProductSortDropdownVisible;
     }
 }
 export default HomePage;
