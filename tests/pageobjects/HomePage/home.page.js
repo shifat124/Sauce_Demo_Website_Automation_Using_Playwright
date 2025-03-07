@@ -8,6 +8,7 @@ class HomePage {
         this.titleOfItemsDetailsPage = page.locator('.inventory_details_name');
         this.allAddToCartBtn = page.locator('button.btn_primary.btn_inventory');
         this.productSortDropdownBox = page.locator('.product_sort_container');
+        this.dropdownBox = page.locator('.product_sort_container');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
@@ -49,6 +50,12 @@ class HomePage {
         const isProductSortDropdownVisible = await this.productSortDropdownBox.isVisible();
         console.log('isProductSortDropdownVisible', isProductSortDropdownVisible);
         return isProductSortDropdownVisible;
+    }
+    async verifyDropdownExpectedOptions() {
+        const options = await this.dropdownBox.locator('option').allTextContents(); // Get all option texts
+        console.log('options', options);
+        const expectedOptions = ['Name (A to Z)', 'Name (Z to A)', 'Price (low to high)', 'Price (high to low)'];
+        return JSON.stringify(options) === JSON.stringify(expectedOptions);
     }
 }
 export default HomePage;
