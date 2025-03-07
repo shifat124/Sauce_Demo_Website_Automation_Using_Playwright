@@ -57,5 +57,53 @@ class HomePage {
         const expectedOptions = ['Name (A to Z)', 'Name (Z to A)', 'Price (low to high)', 'Price (high to low)'];
         return JSON.stringify(options) === JSON.stringify(expectedOptions);
     }
+    async verifySelectOfNameZToAOption() {
+        const expectedOptionText = 'Name (Z to A)';
+        await this.dropdownBox.selectOption('za');
+        const nameZToAOptionText = await this.dropdownBox.locator('option[value="za"]').textContent();
+        console.log('nameZToAOptionText', nameZToAOptionText);
+        if (nameZToAOptionText === expectedOptionText) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    async verifySelectOfPriceLowToHighOption() {
+        const expectedOptionText = 'Price (low to high)';
+        await this.dropdownBox.selectOption('lohi');
+        const priceLowToHighOptionText = await this.dropdownBox.locator('option[value="lohi"]').textContent();
+        console.log('priceLowToHighOptionText', priceLowToHighOptionText);
+        if (priceLowToHighOptionText === expectedOptionText) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    async verifySelectOfPriceHighToLowOption() {
+        const expectedOptionText = 'Price (high to low)';
+        await this.dropdownBox.selectOption('hilo');
+        const priceHighToLowOptionText = await this.dropdownBox.locator('option[value="hilo"]').textContent();
+        console.log('priceHighToLowOptionText', priceHighToLowOptionText);
+        if (priceHighToLowOptionText === expectedOptionText) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    async verifySelectOfNameAToZOption() {
+        const expectedOptionText = 'Name (A to Z)';
+        await this.dropdownBox.selectOption('az');
+        const nameAToZOptionText = await this.dropdownBox.locator('option[value="az"]').textContent();
+        console.log('nameAToZOptionText', nameAToZOptionText);
+        if (nameAToZOptionText === expectedOptionText) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 export default HomePage;

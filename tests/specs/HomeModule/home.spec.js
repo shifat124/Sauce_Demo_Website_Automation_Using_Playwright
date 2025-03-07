@@ -85,4 +85,32 @@ test.describe('Home Page Test', () => {
         const actual = await homePageObject.verifyDropdownExpectedOptions();
         expect(actual).toBeTruthy();
     });
+    test('Validate visibility of "Name (Z to A)" text after selecting from dropdown options', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifySelectOfNameZToAOption();
+        expect(actual).toBeTruthy();
+    });
+    test('Validate visibility of "Price (low to high)" text after selecting from dropdown options', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifySelectOfPriceLowToHighOption();
+        expect(actual).toBeTruthy();
+    });
+    test('Validate visibility of "Price (high to low)" text after selecting from dropdown options', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifySelectOfPriceHighToLowOption();
+        expect(actual).toBeTruthy();
+    });
+    test('Validate visibility of "Name (A to Z)" text after selecting from dropdown options', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        const actual = await homePageObject.verifySelectOfNameAToZOption();
+        expect(actual).toBeTruthy();
+    });
 });
