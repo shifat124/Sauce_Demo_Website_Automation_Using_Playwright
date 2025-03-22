@@ -6,6 +6,7 @@ class CheckoutPage {
         this.userPostalCode = page.locator('#postal-code');
         this.continueCartInfoBtn = page.locator("input[value='CONTINUE']");
         this.totalPriceLabel = page.locator('.summary_total_label');
+        this.cancelCartInfoBtn = page.locator('.cart_cancel_link.btn_secondary');
     }
     async setUserCheckoutInfo(firstname, lastname, postalcode) {
         await this.userFirstName.fill(firstname);

@@ -23,4 +23,19 @@ test.describe('Checkout Page Test', () => {
         console.log('Total Price', actual);
         expect(actual).toBe('Total: $140.34');
     });
+    test('Validate the pressing of cancel button of Checkout Info Details Given Page', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        await homePageObject.verifyclickallAddToCartBtn();
+        const commonPageObject = new CommonPage(page);
+        await commonPageObject.cartLogo.click();
+        const addToCartPageObject = new AddToCartPage(page);
+        await addToCartPageObject.checkoutBtn.click();
+        const checkoutPageObject = new CheckoutPage(page);
+        await checkoutPageObject.setUserCheckoutInfo(CheckoutData.user_first_name, CheckoutData.user_last_name, CheckoutData.postal_code);
+        await checkoutPageObject.cancelCartInfoBtn.click();
+        console.log('cartPageUrl', page.url());
+        await expect(page).toHaveURL('https://www.saucedemo.com/v1/cart.html');
+    });
 });
