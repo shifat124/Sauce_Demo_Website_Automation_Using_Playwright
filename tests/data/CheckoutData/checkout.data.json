@@ -1,5 +1,6 @@
 {
     "user_first_name": "Jhonny",
     "user_last_name": "Albert",
-    "postal_code": "1200"
+    "postal_code": "1200",
+    "success_checkout_text": "THANK YOU FOR YOUR ORDER"
 }
