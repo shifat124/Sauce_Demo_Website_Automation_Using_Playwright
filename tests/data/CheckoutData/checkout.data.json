@@ -2,5 +2,22 @@
     "user_first_name": "Jhonny",
     "user_last_name": "Albert",
     "postal_code": "1200",
-    "success_checkout_text": "THANK YOU FOR YOUR ORDER"
+    "success_checkout_text": "THANK YOU FOR YOUR ORDER",
+    "checkoutinfodetails": [
+        {
+            "firstname": "Troy",
+            "lastname": "Kelvin",
+            "postalcode": "1400"
+        },
+        {
+            "firstname": "Lina",
+            "lastname": "Degree",
+            "postalcode": "1000"
+        },
+        {
+            "firstname": "Robin",
+            "lastname": "Celcius",
+            "postalcode": "2000"
+        }
+    ]
 }

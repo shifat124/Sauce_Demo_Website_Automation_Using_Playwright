@@ -21,7 +21,8 @@ test.describe('Checkout Page Test', () => {
         const checkoutPageObject = new CheckoutPage(page);
         await checkoutPageObject.setUserCheckoutInfo(CheckoutData.user_first_name, CheckoutData.user_last_name, CheckoutData.postal_code);
         await checkoutPageObject.continueCartInfoBtn.click();
-        const actual = await checkoutPageObject.totalPriceLabel.textContent();
+        const checkoutDetailsPageObject = new CheckoutDetailsPage(page);
+        const actual = await checkoutDetailsPageObject.totalPriceLabel.textContent();
         console.log('Total Price', actual);
         expect(actual).toBe('Total: $140.34');
     });
@@ -74,5 +75,24 @@ test.describe('Checkout Page Test', () => {
         await checkoutDetailsPageObject.cancelCheckoutBtn.click();
         console.log('homePageUrl', page.url());
         await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
+    });
+    CheckoutData.checkoutinfodetails.forEach((user) => {
+        test(`Validate Checkout Info Details from the JSON file from Checkout Info Details Page: ${user.firstname}`, async ({ page }) => {
+            const loginPageObject = new LoginPage(page);
+            await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+            const homePageObject = new HomePage(page);
+            await homePageObject.verifyclickallAddToCartBtn();
+            const commonPageObject = new CommonPage(page);
+            await commonPageObject.cartLogo.click();
+            const addToCartPageObject = new AddToCartPage(page);
+            await addToCartPageObject.checkoutBtn.click();
+            const checkoutPageObject = new CheckoutPage(page);
+            await checkoutPageObject.setUserCheckoutInfo(user.firstname, user.lastname, user.postalcode);
+            await checkoutPageObject.continueCartInfoBtn.click();
+            const checkoutDetailsPageObject = new CheckoutDetailsPage(page);
+            const actual = await checkoutDetailsPageObject.totalPriceLabel.textContent();
+            console.log('Total Price', actual);
+            expect(actual).toBe('Total: $140.34');
+        });
     });
 });
