@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+import LoginPage from '../../pageobjects/LoginPage/login.page';
+import HomePage from '../../pageobjects/HomePage/home.page';
+import CommonPage from '../../pageobjects/CommonPage/common.page';
+import AddToCartPage from '../../pageobjects/AddToCartPage/addtocart.page';
+import CheckoutPage from '../../pageobjects/CheckoutPage/checkout.page';
+import CheckoutDetailsPage from '../../pageobjects/CheckoutPage/checkoutDetails.page';
+import MenuPage from '../../pageobjects/MenuPanelPage/menu.page';
+import LoginData from '../../data/LoginData/login.data.json' assert { type: 'json' };
+import CheckoutData from '../../data/CheckoutData/checkout.data.json' assert { type: 'json' };
+test.describe('End To End Test', () => {
+    test('Validate end to end test of the whole system', async ({ page }) => {
+        const loginPageObject = new LoginPage(page);
+        await loginPageObject.verifyLogin(LoginData.valid_username, LoginData.valid_password);
+        const homePageObject = new HomePage(page);
+        await homePageObject.verifyclickallAddToCartBtn();
+        const commonPageObject = new CommonPage(page);
+        await commonPageObject.cartLogo.click();
+        const addToCartPageObject = new AddToCartPage(page);
+        await addToCartPageObject.checkoutBtn.click();
+        const checkoutPageObject = new CheckoutPage(page);
+        await checkoutPageObject.setUserCheckoutInfo(CheckoutData.user_first_name, CheckoutData.user_last_name, CheckoutData.postal_code);
+        await checkoutPageObject.continueCartInfoBtn.click();
+        const checkoutDetailsPageObject = new CheckoutDetailsPage(page);
+        await checkoutDetailsPageObject.finishCheckoutBtn.click();
+        await commonPageObject.sideMenuBar.click();
+        const menuPageObject = new MenuPage(page);
+        await menuPageObject.logoutOption.click();
+        console.log('loginPageUrl', page.url());
+        await expect(page).toHaveURL('https://www.saucedemo.com/v1/index.html');
+    });
+});

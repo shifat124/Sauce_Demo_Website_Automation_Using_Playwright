@@ -18,6 +18,7 @@ test.describe('LogIn Page Test', () => {
     test(`Validate Data Driven Test - Login test for user: ${user.username}`, async ({ page }) => {
       const loginPageObject = new LogInPage(page);
       await loginPageObject.verifyLogin(user.username, user.password);
+      console.log('homePageUrl', page.url());
       await expect(page).toHaveURL('https://www.saucedemo.com/v1/inventory.html');
     });
   });
