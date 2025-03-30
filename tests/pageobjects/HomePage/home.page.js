@@ -9,6 +9,9 @@ class HomePage {
         this.allAddToCartBtn = page.locator('button.btn_primary.btn_inventory');
         this.productSortDropdownBox = page.locator('.product_sort_container');
         this.dropdownBox = page.locator('.product_sort_container');
+        this.sauceLabsBackpackLink = page.locator('#item_4_title_link');
+        this.sauceLabsBikeLightLink = page.locator('#item_0_title_link');
+        this.sauceLabsBoltTshirtLink = page.locator('#item_1_title_link');
     }
     async verifyCountItems() {
         const count = await this.totalItemsNumber.count();
