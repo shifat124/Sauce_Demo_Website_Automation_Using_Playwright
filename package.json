@@ -4,12 +4,20 @@
   "version": "1.0.0",
   "description": "An Test Automation Project of an E-Commerce based demo website using Playwright, JavaScript, Page Object Model (POM) Pattern, HTML Reports, Data Driven Testing using JSON file and many more.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "clearAllure": "rimraf allure-results && rimraf allure-report",
+    "runTests": "npx playwright test --project=chromium",
+    "test": "npm run clearAllure && npm run runTests",
+    "generateAllure": "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.5"
+    "@types/node": "^22.10.5",
+    "allure-commandline": "^2.33.0",
+    "allure-playwright": "^3.2.1",
+    "rimraf": "^6.0.1"
   }
 }

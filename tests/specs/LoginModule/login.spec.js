@@ -23,5 +23,3 @@ test.describe('LogIn Page Test', () => {
     });
   });
 });
-
-
